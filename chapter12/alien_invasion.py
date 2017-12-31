@@ -8,7 +8,6 @@ import pygame
 from pygame.sprite import Group
 from settings import Settings
 from ship import Ship
-from alien import Alien
 import game_functions as gf
 
 
@@ -20,8 +19,8 @@ def run_game():
     pygame.display.set_caption("Alien Invasion")
 
     # Initialize a font
-    # game_font = pygame.font.SysFont("Calibri", 30)   
-    # text = game_font.render("Hello, world." , True, (255, 0, 0), (255, 255, 255)) 
+    # game_font = pygame.font.SysFont("Calibri", 30)
+    # text = game_font.render("Hello, world." , True, (255, 0, 0), (255, 255, 255))
 
     # Make a ship
     ship = Ship(ai_settings, screen)
@@ -29,8 +28,11 @@ def run_game():
     # Make a group of bullets
     bullets = Group()
 
-    # Make an alien
-    alien = Alien(ai_settings, screen)
+    # Make a group of aliens
+    aliens = Group()
+
+    # Create the fleet of aliens
+    gf.create_fleet(ai_settings, screen, ship, aliens)
 
     # Start the main loop for the game.
     while True:
@@ -39,9 +41,9 @@ def run_game():
 
         ship.update()
         gf.update_bullets(bullets)
-        
+
         # Redraw the screen during each pass through the loop.
         # Make the most recently drawn screen visible.
-        gf.update_screen(ai_settings, screen, ship, alien, bullets)
+        gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
 run_game()
