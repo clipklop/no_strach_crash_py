@@ -28,7 +28,7 @@ class Bullet(Sprite):
 		self.y -= self.speed_factor
 
 		# Updates position of rectangle
-		self.rect.y =  self.y
+		self.rect.y = self.y
 
 	def draw_bullet(self):
 		"""Dispaly bullet to the screen."""

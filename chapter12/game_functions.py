@@ -21,9 +21,9 @@ def check_keydown_events(event, ai_settings, screen, ship, bullets):
         # Move the ship to the bottom
         ship.moving_down = True   
     elif event.key == pygame.K_SPACE:
-        # Creats new bullet and add it to the Group of bullets
-        new_bullet = Bullet(ai_settings, screen, ship)
-        bullets.add(new_bullet)
+        fire_bullet(ai_settings, screen, ship, bullets)
+    elif event.key == pygame.K_q:
+        sys.exit()
 
 def check_keyup_events(event, ship):
     if event.key == pygame.K_RIGHT:
@@ -51,7 +51,7 @@ def check_events(ai_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(ai_settings, screen, ship, bullets):
+def update_screen(ai_settings, screen, ship, alien, bullets):
     """Updates the pictures on a screen and redraw new screen."""
     # Redraw the screen for each iteration
     screen.fill(ai_settings.bg_color)
@@ -61,7 +61,24 @@ def update_screen(ai_settings, screen, ship, bullets):
         bullet.draw_bullet()
 
     ship.blitme()
+    alien.blitme()
 
     # Show the most recently drawn screen
     pygame.display.flip()
 
+
+def update_bullets(bullets):
+    """Updates position of the bullet and removes drop out bullets."""
+    bullets.update()
+
+    # Removes bullets that reaches top of the screen.
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
+
+
+def fire_bullet(ai_settings, screen, ship, bullets):
+    """Creats new bullet and add it to the Group of bullets."""
+    if len(bullets) < ai_settings.bullets_allowed:
+        new_bullet = Bullet(ai_settings, screen, ship)
+        bullets.add(new_bullet)    
