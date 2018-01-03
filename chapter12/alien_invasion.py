@@ -1,6 +1,6 @@
 # **
 # Arkanoid game.
-# Moving ship, fires bullets to alines!
+# Moving ship, fires bullets to aliens!
 # **
 
 
@@ -40,7 +40,7 @@ def run_game():
         gf.check_events(ai_settings, screen, ship, bullets)
 
         ship.update()
-        gf.update_bullets(bullets)
+        gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
         gf.update_aliens(ai_settings, aliens)
 
         # Redraw the screen during each pass through the loop.
