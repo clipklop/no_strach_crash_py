@@ -45,9 +45,12 @@ class Ship():
         # Updates rect attribute based on self.center
         self.rect.centerx = self.center_x
         self.rect.centery = self.center_y
-        
+
     def blitme(self):
         """Draw the ship at its current location."""
         self.screen.blit(self.image, self.rect)
 
-
+    def center_ship(self):
+        """Center the ship on the screen."""
+        self.rect.centerx = self.screen_rect.centerx
+        self.rect.centery = self.screen_rect.top + self.rect.centery
