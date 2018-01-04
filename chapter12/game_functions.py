@@ -183,6 +183,7 @@ def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
         if alien.rect.bottom >= screen_rect.bottom:
             # Treat this the same as if the ship got hit
             ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+            break
 
 
 def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
