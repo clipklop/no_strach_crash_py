@@ -10,6 +10,7 @@ from settings import Settings
 from ship import Ship
 import game_functions as gf
 from game_stats import GameStats
+from button import Button
 
 
 def run_game():
@@ -19,9 +20,8 @@ def run_game():
     screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
 
-    # Initialize a font
-    # game_font = pygame.font.SysFont("Calibri", 30)
-    # text = game_font.render("Hello, world." , True, (255, 0, 0), (255, 255, 255))
+    # Creates Play button
+    play_button = Button(ai_settings, screen, "Play")
 
     # Make a ship
     ship = Ship(ai_settings, screen)
@@ -41,7 +41,7 @@ def run_game():
     # Start the main loop for the game.
     while True:
         # Watch for keyboards and mouse events.
-        gf.check_events(ai_settings, screen, ship, bullets)
+        gf.check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
 
         if stats.game_active:
             ship.update()
@@ -50,6 +50,6 @@ def run_game():
 
             # Redraw the screen during each pass through the loop.
             # Make the most recently drawn screen visible.
-            gf.update_screen(ai_settings, screen, ship, aliens, bullets)
+            gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
 
 run_game()
