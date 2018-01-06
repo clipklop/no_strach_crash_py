@@ -27,7 +27,7 @@ def check_keydown_events(event, ai_settings, screen, stats, ship, bullets):
     elif event.key == pygame.K_q:
         sys.exit()
     elif event.key == pygame.K_p:
-        stats.game_active = True        
+        stats.game_active = True
 
 def check_keyup_events(event, ship):
     if event.key == pygame.K_RIGHT:
@@ -61,6 +61,9 @@ def check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
 def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y):
     """Launch new game after Play button has been clicked."""
     if play_button.rect.collidepoint(mouse_x, mouse_y) and not stats.game_active:
+        # Reset the game settings
+        ai_settings.initialize_dynamic_settings()
+
         # Hide mouse pointer
         pygame.mouse.set_visible(False)
         stats.game_active = True
@@ -113,6 +116,7 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
     if len(aliens) == 0:
         # Destroy remaining bullets and create new fleet
         bullets.empty()
+        ai_settings.increase_speed()
         create_fleet(ai_settings, screen, ship, aliens)
 
 

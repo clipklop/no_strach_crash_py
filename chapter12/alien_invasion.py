@@ -48,8 +48,8 @@ def run_game():
             gf.update_bullets(ai_settings, screen, ship, aliens, bullets)
             gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
 
-            # Redraw the screen during each pass through the loop.
-            # Make the most recently drawn screen visible.
-            gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
+        # Redraw the screen during each pass through the loop.
+        # Make the most recently drawn screen visible.
+        gf.update_screen(ai_settings, screen, stats, ship, aliens, bullets, play_button)
 
 run_game()
