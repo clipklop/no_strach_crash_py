@@ -1,5 +1,7 @@
-Alien invasion. Arkanoid style game. Written on Python, using Pygame module.
+Alien invasion.
 ===
+Arkanoid style game. Written on Python, using Pygame module.
+====
 
 TO-DO:
 ---
